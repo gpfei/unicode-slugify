@@ -34,7 +34,7 @@ def slugify(s, ok=SLUG_OK, lower=True, spaces=False, only_ascii=False, space_rep
     """
     Creates a unicode slug for given string with several options.
 
-    L and N signify letter/number.
+    L and N signify letter/number. And S signify Symbol.
     http://www.unicode.org/reports/tr44/tr44-4.html#GC_Values_Table
 
     :param s: Your unicode string.
@@ -67,7 +67,7 @@ def slugify(s, ok=SLUG_OK, lower=True, spaces=False, only_ascii=False, space_rep
     rv = []
     for c in unicodedata.normalize('NFKC', smart_text(s)):
         cat = unicodedata.category(c)[0]
-        if cat in 'LN' or c in ok:
+        if cat in 'LNS' or c in ok:
             rv.append(c)
         elif cat == 'Z':  # space
             rv.append(' ')
